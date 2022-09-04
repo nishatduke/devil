@@ -248,7 +248,7 @@ public class HelloApplication extends Application {
         // define price as item price
         purchaseButton.setOnMouseClicked(e -> updateCoins(shoes.price));
 
-        stage.setTitle("Devil's Advocate");
+        stage.setTitle("Devil's Advocate2");
         stage.setScene(scene);
 //        stage.setFullScreen(true);
         stage.show();
