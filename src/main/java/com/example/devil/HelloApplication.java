@@ -21,6 +21,10 @@ import javafx.scene.layout.StackPane;
 
 public class HelloApplication extends Application {
     public Group root = new Group();
+    ArrayList<Image> Images = new ArrayList<Image>();
+    Image image_block1 = new Image("/1 Block.png");
+    Image image_block2 = new Image("/2 Blocks.png");
+
 
     public int level = 1;
 
@@ -127,7 +131,7 @@ public class HelloApplication extends Application {
             root.getChildren().add(button);
 
 //            button.setOnMouseClicked(e -> specialEvent1(button.getText()));
-            button.setOnMouseClicked(e -> updateChain(chainSize));
+            button.setOnMouseClicked(e -> updateChain());
         }
 
     }
@@ -162,6 +166,9 @@ public class HelloApplication extends Application {
         lines.add("You will be our new employee :)");
         lines.add("Please make our blockchain the best there is");
         lines.add("Good Luck!");
+        Images.add(image_block1);
+        Images.add(image_block2);
+
 
         //shops and items
         Clothes.add(shoes);
@@ -271,13 +278,8 @@ public class HelloApplication extends Application {
         }
     }
 
-    //blockchain functions
-    private void updateChain(int chainSize){
-        ArrayList<Image> Images = new ArrayList<Image>();
-        Image image = new Image("/1 Block.png");
-        Images.add(image);
-        image = new Image("/2 Blocks.png");
-        Images.add(image);
+    //blockchain functions call update coin and special event and make the images global
+    private void updateChain(){
         ImageView newChainView = new ImageView(Images.get(chainSize));
         newChainView.setX(20);
         newChainView.setY(20);
@@ -286,7 +288,7 @@ public class HelloApplication extends Application {
 
         root.getChildren().remove(coins);
         root.getChildren().addAll(newChainView, coins);
-        chainSize ++;
+        chainSize++;
     }
 
     private void specialEvent1(String x){
