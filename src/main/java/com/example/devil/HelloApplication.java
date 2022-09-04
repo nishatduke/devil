@@ -19,6 +19,8 @@ import javafx.scene.layout.StackPane;
 
 public class HelloApplication extends Application {
     public Group root = new Group();
+
+    public int level = 1;
     public int d_counter = 0;
     public ArrayList<String> lines = new ArrayList<String>();
 
@@ -261,16 +263,25 @@ public class HelloApplication extends Application {
         }
     }
 
-    private int updateCoins(int price) {
-        return numCoins - price;
+    //coin functions
+    private void updateCoins(int price) {
+        numCoins = numCoins - price;
+        coins.setText(Integer.toString(numCoins) + " coins");
     }
 
+    private void addCoins(int raise){
+        numCoins = numCoins + raise;
+        coins.setText(Integer.toString(numCoins) + " coins");
+    }
+
+    //item functions
     private void listItems(ArrayList<Item> Items, int X, int Y) {
         for (int i = 0; i < Items.size(); i++) {
             // Print all elements of List
             Items.get(i).displayItem(X, Y);
             if (i > 0) {
                 Items.get(i).displayItem(X, Y + 30);
+                Y = Y +  30;
             }
         }
     }
