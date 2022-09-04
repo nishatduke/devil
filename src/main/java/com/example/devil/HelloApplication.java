@@ -26,20 +26,20 @@ public class HelloApplication extends Application {
     Text coins = new Text();
 
     Button nextButton = new Button();
-    Image textbox = new Image("C:\\Users\\kynda\\JavaProjects\\PennApps23\\src\\main\\resources\\Images\\Textbox.png");
+    Image textbox = new Image("/Textbox2.png");
 
     ImageView textBoxView = new ImageView(textbox);
     Text text = new Text();
 
     //coin pouch and blockchain here
-    Image blockChain = new Image("C:\\Users\\kynda\\JavaProjects\\PennApps23\\src\\main\\resources\\Images\\No Blocks.png");
+    Image blockChain = new Image("/no_blocks.png");
     ImageView blockChainView = new ImageView(blockChain);
 
 
 //    Image featureBox = new Image("");
 //    ImageView featureBoxView = new ImageView(featureBox);
 
-    Image happySatan = new Image("C:\\Users\\kynda\\JavaProjects\\PennApps23\\src\\main\\resources\\Images\\Satan Smile.png");
+    Image happySatan = new Image("/happy_satan.png");
     ImageView defaultSatan = new ImageView(happySatan);
     Button purchaseButton = new Button();
 
@@ -73,6 +73,8 @@ public class HelloApplication extends Application {
         public void displayShop(int X, int Y, int Height, int Width) {
             Image shopImage = new Image(this.url);
             ImageView imageView = new ImageView(shopImage);
+            imageView.setFitHeight(Height);
+            imageView.setFitWidth(Width);
             Button button = new Button();
             button.setTranslateX(X);
             button.setTranslateY(Y);
@@ -140,8 +142,8 @@ public class HelloApplication extends Application {
         Clothes.add(shoes);
         Clothes.add(dress);
         Clothes.add(hat);
-        Shop clothesShop = new Shop("clothes", "C:\\Users\\kynda\\JavaProjects\\PennApps23\\src\\main\\resources\\Images\\Creepy Clothing.png", Clothes);
-        clothesShop.displayShop(0, 0, 200, 200);
+        Shop clothesShop = new Shop("clothes", "/Creepy_Clothing.png", Clothes);
+        clothesShop.displayShop(800, 0, 200, 200);
 
         StackPane group = new StackPane();
 //        Scene scene = new Scene(group, 320, 240);
@@ -177,7 +179,7 @@ public class HelloApplication extends Application {
         text.setY(580);
 
         //Creating next button
-        Image nextBtn = new Image("C:\\Users\\kynda\\JavaProjects\\PennApps23\\src\\main\\resources\\Images\\Next Button.png");
+        Image nextBtn = new Image("/Next_Button.png");
         ImageView nextBtnView = new ImageView(nextBtn);
         nextBtnView.setFitHeight(80);
         nextBtnView.setFitWidth(80);
