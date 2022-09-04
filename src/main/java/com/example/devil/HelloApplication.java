@@ -10,6 +10,7 @@ import java.io.IOException;
 import javafx.scene.control.Button;
 import javafx.scene.image.*;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import javafx.scene.layout.StackPane;
@@ -130,13 +131,20 @@ public class HelloApplication extends Application {
     Item dress = new Item("Dress", 17);
     Item hat = new Item("Hat", 8);
 
-    public ArrayList<Item> Food = new ArrayList<Item>();
+    public ArrayList<Item> Foods = new ArrayList<Item>();
     Item apple = new Item("Poison Apple",3);
     Item juice = new Item("Skull Juice",4);
     Item banana = new Item("Rotten Banana",2);
 
-    public ArrayList<Item> Habit = new ArrayList<Item>();
+    public ArrayList<Item> Habits = new ArrayList<Item>();
     Item book = new Item("Suspicious Book",5);
+    Item vhs = new Item("Cursed VHS",10);
+    Item dvd = new Item("Lost DVD",7);
+
+    public ArrayList<Item> Pets = new ArrayList<Item>();
+    Item pet1 = new Item("pet1",25);
+    Item pet2 = new Item("pet2",10);
+    Item pet3 = new Item("pet3",27);
 
 
     @Override
@@ -153,6 +161,27 @@ public class HelloApplication extends Application {
         Clothes.add(hat);
         Shop clothesShop = new Shop("clothes", "/Creepy_Clothing.png", Clothes);
         clothesShop.displayShop(743, 32, 200, 200);
+
+        Foods.add(apple);
+        Foods.add(juice);
+        Foods.add(banana);
+        Shop foodShop = new Shop("food","/Ghoulish_Groceries.png",Foods);
+        foodShop.displayShop(954,100,200,200);
+
+        Habits.add(book);
+        Habits.add(vhs);
+        Habits.add(dvd);
+        Shop habitShop = new Shop("habit","/Hellish Habits.png",Habits);
+        habitShop.displayShop(745,250,200,200);
+
+        Pets.add(pet1);
+        Pets.add(pet2);
+        Pets.add(pet3);
+        Shop petShop = new Shop("pets","/Perilous Pets.png",Pets);
+        petShop.displayShop(954,319,200,200);
+
+
+
 
         StackPane group = new StackPane();
 //        Scene scene = new Scene(group, 320, 240);
