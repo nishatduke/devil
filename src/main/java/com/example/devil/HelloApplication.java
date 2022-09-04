@@ -24,15 +24,20 @@ public class HelloApplication extends Application {
     ArrayList<Image> Images = new ArrayList<Image>();
     Image image_block1 = new Image("/1 Block.png");
     Image image_block2 = new Image("/2 Blocks.png");
-
+    Text block_coins1 = new Text();
+    Text block_coins2=new Text();
+    Text block_coins3= new Text();
+    Text block_coins4= new Text();
+    Text block_coins5= new Text();
 
     public int level = 1;
+    public boolean reset =false;
 
     public int chainSize = 0;
     public int d_counter = 0;
     public ArrayList<String> lines = new ArrayList<String>();
 
-    public int numCoins = 0;
+    public int numCoins = 20;
 
     Text coins = new Text();
 
@@ -131,7 +136,7 @@ public class HelloApplication extends Application {
             root.getChildren().add(button);
 
 //            button.setOnMouseClicked(e -> specialEvent1(button.getText()));
-            button.setOnMouseClicked(e -> updateChain());
+            button.setOnMouseClicked(e -> updateChain(this.name,this.price));
         }
 
     }
@@ -168,7 +173,12 @@ public class HelloApplication extends Application {
         lines.add("Good Luck!");
         Images.add(image_block1);
         Images.add(image_block2);
-
+        block_coins1.setX(75);
+        block_coins1.setY(260);
+        block_coins1.setFont(Font.font(15));
+        block_coins2.setX(75);
+        block_coins2.setY(260+84);
+        block_coins2.setFont(Font.font(15));
 
         //shops and items
         Clothes.add(shoes);
@@ -279,15 +289,31 @@ public class HelloApplication extends Application {
     }
 
     //blockchain functions call update coin and special event and make the images global
-    private void updateChain(){
+    private void updateChain(String name, int itemprice){
         ImageView newChainView = new ImageView(Images.get(chainSize));
         newChainView.setX(20);
         newChainView.setY(20);
         newChainView.setFitHeight(637);
         newChainView.setFitWidth(178);
-
+        updateCoins(itemprice);
         root.getChildren().remove(coins);
         root.getChildren().addAll(newChainView, coins);
+
+        if(chainSize==0&&!reset){
+            block_coins1.setText("You bought: "+name+"\n"+"You paid: "+itemprice);
+            root.getChildren().add(block_coins1);
+        }
+        if(chainSize==1&&!reset){
+            block_coins2.setText("You bought: "+name+"\n"+"You paid: "+itemprice);
+            root.getChildren().remove(block_coins1);
+            root.getChildren().addAll(block_coins1,block_coins2);
+        }
+
+
+
+
+
+
         chainSize++;
     }
 
