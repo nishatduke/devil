@@ -21,6 +21,11 @@ import javafx.scene.layout.StackPane;
 
 public class HelloApplication extends Application {
     public Group root = new Group();
+
+    Button enter = new Button("");
+
+    Image intro = new Image("/Title_Page.png");
+    ImageView introView = new ImageView(intro);
     ArrayList<Image> Images = new ArrayList<Image>();
     Image image_block1 = new Image("/1 Block.png");
     Image image_block2 = new Image("/2 Blocks.png");
@@ -33,7 +38,6 @@ public class HelloApplication extends Application {
     public int level = 1;
     public boolean reset =false;
 
-    public boolean Freeze = false;
 
     public int chainSize = 0;
     public int d_counter = 0;
@@ -47,6 +51,10 @@ public class HelloApplication extends Application {
     Image textbox = new Image("/Textbox2.png");
 
     ImageView textBoxView = new ImageView(textbox);
+    Image textBoxSatan = new Image("/Satan_Text_Box.png");
+
+    ImageView textBoxSatanView = new ImageView(textBoxSatan);
+
     Text text = new Text();
 
     //coin pouch and blockchain here
@@ -61,12 +69,15 @@ public class HelloApplication extends Application {
     ImageView defaultSatan = new ImageView(happySatan);
     Button purchaseButton = new Button();
 
+    Image featureBox = new Image("/Placeholder Square.png");
+    ImageView featureBoxView = new ImageView(featureBox);
+
 
     ImageView newChainView;
-    int d2_counter=0;
+    public int d2_counter=0;
     ArrayList<String> lines2 = new ArrayList<String>();
 
-    boolean freeze = false;
+    public boolean Freeze = false;
 
 
     public class Shop {
@@ -106,6 +117,7 @@ public class HelloApplication extends Application {
             button.setTranslateY(Y);
             button.setPrefSize(Width, Height);
             button.setGraphic(imageView);
+            button.setStyle("-fx-background-color: #631D23");
             root.getChildren().addAll(imageView, button);
             button.setOnMouseClicked(e -> listItems(this.Items, 530, Y));
         }
@@ -171,6 +183,7 @@ public class HelloApplication extends Application {
             }
         }
 
+
         public void displayFeature(int X, int Y) {
             Button button = new Button(this.name);
             button.setTranslateX(X);
@@ -206,40 +219,86 @@ public class HelloApplication extends Application {
     Item pet2 = new Item("Hydra",10);
     Item pet3 = new Item("Hammie Boi",27);
 
-
+        int d3_counter=0;
+        ArrayList<String> lines3 = new ArrayList<String>();
     @Override
     public void start(Stage stage) throws IOException {
         //FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         lines.add("Welcome to hell.");
         lines.add("You’re probably thinking, ‘Why the hell am I in hell?’. ");
-        lines.add("Well, my records say you downloaded too many illegal Sims 4 mods.\n");
+        lines.add("Well, my records say you have plundered several ships in your time.");
         lines.add("Of course, you need to labor to atone for your sins.");
         lines.add("… Basically, I need you to run me some errands.");
-        lines.add("Understood? Too bad if not. Anyways, let’s start your first task.\n");
+        lines.add("Understood? Too bad if not. Anyways, let’s start your first task.");
         lines.add("I need you to pick up a dress I ordered for a party.");
-        lines.add("Here, I’ll give you 20 coins. \n");
-        lines.add("The dress wasn’t that expensive, so you better bring back some change.\n");
-        lines.add("Well, what are you looking at? Go get me my dress!\n");
-        lines2.add("");//last minute filler
-        lines2.add("That was quick, good job!\n");
-        lines2.add("Where’s my change? What? You don’t have any?\n");
+        lines.add("Here, I’ll give you 20 coins. ");
+        lines.add("The dress wasn’t that expensive, so you better bring back some change.");
+        lines.add("Well, what are you looking at? Go get me my dress!");
+//        lines2.add("");//last minute filler
+        lines2.add("");
+        lines2.add("That was quick, good job!");
+        lines2.add("");
+        lines2.add("Where’s my change? What? You don’t have any?");
+        lines2.add("");
         lines2.add("You don’t take me to be a fool, don’t you? How should I punish you?");
-        lines2.add("… Actually, I think I know what might have happened.\n");
-        lines2.add("Oh it was probably one of those angel hackers");
-        lines2.add("Try again, but freeze the block this time.\n");
-        lines2.add(""); // last minute filler
+        lines2.add("");
+        lines2.add("… Actually, I think I know what might have happened.");
+        lines2.add("");
+        lines2.add("Oh, it was probably one of those angel hackers.");
+        lines2.add("");
+        lines2.add("Try again, but freeze the block this time.");
+        lines2.add("");
+       // lines2.add(""); // last minute filler
+        lines3.add("");
+        lines3.add("");
+
+        lines3.add("Ok, great work! Let's move to the next phase.");
+        lines3.add("");
+
+
+        lines3.add("You're going to buy a Hydra for me from the pet shop.");
+        lines3.add("");
+
+
+        lines3.add("But, you'll first need to get its favorite food: Skull Juice.");
+        lines3.add("");
+
+
+        lines3.add("To do that, you just need to add the 'Copy' feature");
+        lines3.add("");
+
+        lines3.add("so every shop owner will know what purchases you've already made.");
+        lines3.add("");
+
+
+        lines3.add("...");
+        lines3.add("");
+
+        lines3.add("What do you mean there's no Copy Button???");
+        lines3.add("");
+
+        lines3.add(".....");
+        lines3.add("");
+
+        lines3.add("I don't have time for these excuses. Just get out.");
+        lines3.add("");
+
+
 
 
 
         Images.add(image_block1);
         Images.add(image_block2);
         newChainView = new ImageView(Images.get(chainSize));
-        block_coins1.setX(75);
-        block_coins1.setY(260);
-        block_coins1.setFont(Font.font(15));
+        block_coins1.setX(50);
+        block_coins1.setY(240);
+        block_coins1.setFont(Font.font(12));
+        block_coins1.setWrappingWidth(145);
         block_coins2.setX(75);
         block_coins2.setY(260+84);
-        block_coins2.setFont(Font.font(15));
+        block_coins2.setFont(Font.font(12));
+        block_coins2.setWrappingWidth(145);
+
 
         //shops and items
         Clothes.add(shoes);
@@ -267,13 +326,13 @@ public class HelloApplication extends Application {
         petShop.displayShop(975,250,200,200);
 
         //adding features
-        Image featureBox = new Image("/Placeholder Square.png");
-        ImageView featureBoxView = new ImageView(featureBox);
+//        Image featureBox = new Image("/Placeholder Square.png");
+//        ImageView featureBoxView = new ImageView(featureBox);
         featureBoxView.setX(250);
         featureBoxView.setY(45);
         featureBoxView.setFitHeight(395);
         featureBoxView.setFitWidth(200);
-        Feature freeze = new Feature("Freeze");
+//        Feature freeze = new Feature("Freeze");
 //        freeze.displayFeature(250,100);
 
         StackPane group = new StackPane();
@@ -327,21 +386,47 @@ public class HelloApplication extends Application {
         nextButton.setGraphic(nextBtnView);
 //        nextButton.setStyle("-fx-background-color: #bfa5a4;");
         // -fx-border-color: #b58482"
+        // intro screen
 
+        introView.setFitWidth(1200);
+        introView.setFitHeight(700);
+
+        Image introBtn = new Image("/Indulge_Button.png");
+        ImageView introBtnView = new ImageView(introBtn);
+//        introBtnView.setX(0);
+//        introBtnView.setY(0);
+        introBtnView.setFitWidth(180);
+        introBtnView.setFitHeight(100);
+        introBtnView.setPreserveRatio(true);
+
+//        Button enter = new Button();
+        enter.setTranslateX(900);
+        enter.setTranslateY(600);
+//        enter.setPrefSize(140,50);
+        enter.setGraphic(introBtnView);
+        enter.setStyle("-fx-background-color: #631D23");
+
+        root.getChildren().addAll(introView, enter);
+        enter.setOnMouseClicked(e -> gameRoot());
         //Creating a Group object for level 1/empty blockchain
-        root.getChildren().addAll(textBoxView, text, nextButton, defaultSatan, blockChainView, coins, featureBoxView);
-        freeze.displayFeature(280,100);
+
+//        private void gameRoot() {
+//            root.getChildren().addAll(textBoxView, text, nextButton, defaultSatan, blockChainView, coins, featureBoxView);
+//        }
+
+//        freeze.displayFeature(280,100);
+
         Scene scene = new Scene(root, 1200, 700);
         Color background_red =  Color.web("0x631D23");
         scene.setFill(background_red);
-        if(level==1) {
-            nextButton.setOnMouseClicked(e -> nextDialgoue());
 
-        }
+        nextButton.setOnMouseClicked(e -> nextDialgoue());
 
-        if(level==2){
-            nextButton.setOnMouseClicked(e -> nextDialgoue2());
-        }
+
+
+       // if(level==2){
+           // nextButton.setOnMouseClicked(e -> nextDialgoue());
+      //  }
         // define price as item price
         purchaseButton.setOnMouseClicked(e -> updateCoins(shoes.price));
 
@@ -349,6 +434,13 @@ public class HelloApplication extends Application {
         stage.setScene(scene);
 //        stage.setFullScreen(true);
         stage.show();
+    }
+
+    private void gameRoot() {
+        root.getChildren().removeAll(introView, enter);
+        root.getChildren().addAll(textBoxView, text, nextButton, defaultSatan, blockChainView, coins, featureBoxView);
+        Feature freeze = new Feature("Freeze");
+        freeze.displayFeature(280,100);
     }
 
     private void nextDialgoue() {
@@ -370,14 +462,14 @@ public class HelloApplication extends Application {
 
 
                 d_counter++;
-                String current = lines.get(d_counter);
-                text.setText(current);
+                String current1 = lines.get(d_counter);
+                text.setText(current1);
             }
 
         }
 
         if(level==2) {
-            root.getChildren().removeAll(newChainView,block_coins1,block_coins2);
+//            root.getChildren().removeAll(newChainView,block_coins1,block_coins2);
             if (d2_counter >= lines2.size()-1) {
                 nextButton.setVisible(false);
                 textBoxView.setVisible(false);
@@ -386,11 +478,50 @@ public class HelloApplication extends Application {
                 reset=true;
                 //button.setManaged(true);
             } else {
+//                System.out.println("yelloo");
+//                System.out.println(d2_counter);
+                    if(d2_counter==3){
+                        root.getChildren().removeAll(newChainView,block_coins1,block_coins2);
+                        numCoins+=20;
+                        root.getChildren().remove(coins);
+                        coins.setText(numCoins+" coins");
+                        root.getChildren().addAll(coins);
+                    }
                 d2_counter++;
-                String current = lines2.get(d2_counter);
-                text.setText(current);
+
+                String current2 = lines2.get(d2_counter);
+                text.setText(current2);
             }
         }
+
+
+        if(level==3) {
+            if(d3_counter>=lines3.size()-1){
+                nextButton.setVisible(false);
+                textBoxView.setVisible(false);
+                text.setVisible(false);
+                defaultSatan.setVisible(false);
+                reset=true;
+                Image img = new Image("/Ending.png");
+                ImageView finale = new ImageView(img);
+                finale.setFitWidth(1200);
+                finale.setFitHeight(700);
+                root.getChildren().add(finale);
+            }
+            else{
+                d3_counter++;
+
+
+
+                String current3 = lines3.get(d3_counter);
+                text.setText(current3);
+            }
+
+        }
+
+
+
+
 
     }
 
@@ -405,7 +536,7 @@ public class HelloApplication extends Application {
         root.getChildren().remove(coins);
         root.getChildren().addAll(newChainView, coins);
 
-
+        System.out.println(Freeze);
 
 
         if(chainSize==0&&!reset){
@@ -419,12 +550,14 @@ public class HelloApplication extends Application {
         }
 
         if(itemprice==17 &&name.equals("Demonic Dress")&&level==1){
-            specialEvent1(itemprice,name);
+           if(Freeze==false) {
+               specialEvent1(itemprice, name);
+           }
         }
 
-    //if(itemprice==17 && name.equals("Dress")&&level==2&&freeze==true ){
-        //specialEvent2(itemprice,name);
-   // }
+    if(itemprice==17 && name.equals("Demonic Dress")&&Freeze==true ){
+        specialEvent2(itemprice,name);
+    }
 
 
 
@@ -457,21 +590,39 @@ public class HelloApplication extends Application {
         nextButton.setOnMousePressed(e->nextDialgoue());
 
     }
-    private void nextDialgoue2(){
-    System.out.print("bruh");
-        if (d2_counter >= lines2.size()-1) {
-            nextButton.setVisible(false);
-            textBoxView.setVisible(false);
-            text.setVisible(false);
-            defaultSatan.setVisible(false);
-            reset=true;
-            //button.setManaged(true);
-        } else {
-            d2_counter++;
-            String current = lines2.get(d2_counter);
-            text.setText(current);
-        }
+
+    private void specialEvent2(int price,String name){
+        level++;
+        nextButton.setVisible(true);
+        textBoxView.setVisible(true);
+        defaultSatan.setVisible(true);
+        text.setVisible(true);
+        text.setText("What!. The block is immutable, I can't steal your money!");
+         block_coins1.setText("You bought: "+name+"\n"+"You paid: "+(price));
+
+        root.getChildren().remove(block_coins1);
+        root.getChildren().add(block_coins1);
+        nextButton.setOnMousePressed(e-> nextDialgoue());
     }
+
+
+
+
+//    private void nextDialgoue2(){
+//    System.out.print("bruh");
+//        if (d2_counter >= lines2.size()-1) {
+//            nextButton.setVisible(false);
+//            textBoxView.setVisible(false);
+//            text.setVisible(false);
+//            defaultSatan.setVisible(false);
+//            reset=true;
+//            //button.setManaged(true);
+//        } else {
+//            d2_counter++;
+//            String current = lines2.get(d2_counter);
+//            text.setText(current);
+//        }
+//    }
 
     //coin functions
     private void updateCoins(int price) {
