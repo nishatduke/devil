@@ -37,7 +37,7 @@ public class HelloApplication extends Application {
     public int d_counter = 0;
     public ArrayList<String> lines = new ArrayList<String>();
 
-    public int numCoins = 20;
+    public int numCoins = 0;
 
     Text coins = new Text();
 
@@ -58,6 +58,14 @@ public class HelloApplication extends Application {
     Image happySatan = new Image("/happy_satan.png");
     ImageView defaultSatan = new ImageView(happySatan);
     Button purchaseButton = new Button();
+
+
+    ImageView newChainView;
+    int d2_counter=0;
+    ArrayList<String> lines2 = new ArrayList<String>();
+
+    boolean freeze = false;
+
 
     public class Shop {
         private String name;
@@ -135,7 +143,7 @@ public class HelloApplication extends Application {
             button.setPrefSize(80, 20);
             root.getChildren().add(button);
 
-//            button.setOnMouseClicked(e -> specialEvent1(button.getText()));
+           //button.setOnMouseClicked(e -> specialEvent1());
             button.setOnMouseClicked(e -> updateChain(this.name,this.price));
         }
 
@@ -167,12 +175,30 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         //FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        lines.add("Welcome to Dante's Bitferno");
-        lines.add("You will be our new employee :)");
-        lines.add("Please make our blockchain the best there is");
-        lines.add("Good Luck!");
+        lines.add("Welcome to hell.");
+        lines.add("You’re probably thinking, ‘Why the hell am I in hell?’. ");
+        lines.add("Well, my records say you downloaded too many illegal Sims 4 mods.\n");
+        lines.add("Of course, you need to labor to atone for your sins.");
+        lines.add("… Basically, I need you to run me some errands.");
+        lines.add("Understood? Too bad if not. Anyways, let’s start your first task.\n");
+        lines.add("I need you to pick up a dress I ordered for a party.");
+        lines.add("Here, I’ll give you 20 coins. \n");
+        lines.add("The dress wasn’t that expensive, so you better bring back some change.\n");
+        lines.add("Well, what are you looking at? Go get me my dress!\n");
+        lines2.add("");//last minute filler
+        lines2.add("That was quick, good job!\n");
+        lines2.add("Where’s my change? What? You don’t have any?\n");
+        lines2.add("You don’t take me to be a fool, don’t you? How should I punish you?");
+        lines2.add("… Actually, I think I know what might have happened.\n");
+        lines2.add("Oh it was probably one of those angel hackers");
+        lines2.add("Try again, but freeze the block this time.\n");
+        lines2.add(""); // last minute filler
+
+
+
         Images.add(image_block1);
         Images.add(image_block2);
+        newChainView = new ImageView(Images.get(chainSize));
         block_coins1.setX(75);
         block_coins1.setY(260);
         block_coins1.setFont(Font.font(15));
@@ -235,11 +261,13 @@ public class HelloApplication extends Application {
         textBoxView.setY(470);
         textBoxView.setPreserveRatio(true);
 
-        text.setText("Welcome to Dante's Bitferno!");
+        text.setText("Welcome to Hell.");
         text.setFont(Font.font(30));
 //        ("teko", FontWeight.NORMAL, FontPosture.REGULAR), 20)
         text.setX(440);
         text.setY(580);
+        text.setWrappingWidth(700);
+
 
         //Creating next button
         Image nextBtn = new Image("/Next_Button.png");
@@ -263,7 +291,14 @@ public class HelloApplication extends Application {
         Scene scene = new Scene(root, 1200, 700);
         Color background_red =  Color.web("0x631D23");
         scene.setFill(background_red);
-        nextButton.setOnMouseClicked(e -> nextDialgoue());
+        if(level==1) {
+            nextButton.setOnMouseClicked(e -> nextDialgoue());
+
+        }
+
+        if(level==2){
+            nextButton.setOnMouseClicked(e -> nextDialgoue2());
+        }
         // define price as item price
         purchaseButton.setOnMouseClicked(e -> updateCoins(shoes.price));
 
@@ -274,23 +309,51 @@ public class HelloApplication extends Application {
     }
 
     private void nextDialgoue() {
-        if (d_counter >= 3) {
-            System.out.println("Hi");
-            nextButton.setVisible(false);
-            textBoxView.setVisible(false);
-            text.setVisible(false);
-            defaultSatan.setVisible(false);
-            //button.setManaged(true);
-        } else {
-            d_counter++;
-            String current = lines.get(d_counter);
-            text.setText(current);
+        if(level==1) {
+            if (d_counter >= lines.size() - 1) {
+                System.out.println("Hi");
+                nextButton.setVisible(false);
+                textBoxView.setVisible(false);
+                text.setVisible(false);
+                defaultSatan.setVisible(false);
+                //button.setManaged(true);
+            } else {
+                if(d_counter==7){
+                    numCoins+=20;
+                    root.getChildren().remove(coins);
+                    coins.setText(numCoins+" coins");
+                    root.getChildren().addAll(coins);
+                }
+
+
+                d_counter++;
+                String current = lines.get(d_counter);
+                text.setText(current);
+            }
+
         }
+
+        if(level==2) {
+            root.getChildren().removeAll(newChainView,block_coins1,block_coins2);
+            if (d2_counter >= lines2.size()-1) {
+                nextButton.setVisible(false);
+                textBoxView.setVisible(false);
+                text.setVisible(false);
+                defaultSatan.setVisible(false);
+                reset=true;
+                //button.setManaged(true);
+            } else {
+                d2_counter++;
+                String current = lines2.get(d2_counter);
+                text.setText(current);
+            }
+        }
+
     }
 
     //blockchain functions call update coin and special event and make the images global
     private void updateChain(String name, int itemprice){
-        ImageView newChainView = new ImageView(Images.get(chainSize));
+        newChainView = new ImageView(Images.get(chainSize));
         newChainView.setX(20);
         newChainView.setY(20);
         newChainView.setFitHeight(637);
@@ -298,6 +361,9 @@ public class HelloApplication extends Application {
         updateCoins(itemprice);
         root.getChildren().remove(coins);
         root.getChildren().addAll(newChainView, coins);
+
+
+
 
         if(chainSize==0&&!reset){
             block_coins1.setText("You bought: "+name+"\n"+"You paid: "+itemprice);
@@ -309,7 +375,13 @@ public class HelloApplication extends Application {
             root.getChildren().addAll(block_coins1,block_coins2);
         }
 
+        if(itemprice==17 &&name.equals("Dress")&&level==1){
+            specialEvent1(itemprice,name);
+        }
 
+    //if(itemprice==17 && name.equals("Dress")&&level==2&&freeze==true ){
+        //specialEvent2(itemprice,name);
+   // }
 
 
 
@@ -317,12 +389,44 @@ public class HelloApplication extends Application {
         chainSize++;
     }
 
-    private void specialEvent1(String x){
-        if(x.equals("Dress 17")) {
+    private void specialEvent1(int price,String name){
+
             nextButton.setVisible(true);
             textBoxView.setVisible(true);
             text.setVisible(true);
             text.setText("Hehe L+ratio, I'm editing your block, and yoinking 3 coins from you!");
+            nextButton.setOnMousePressed(e-> specialUpdate(price,name));
+
+    }
+    private void specialUpdate(int price,String name){
+       level++;
+        updateCoins(3);
+        root.getChildren().remove(coins);
+        root.getChildren().remove(newChainView);
+        root.getChildren().addAll(newChainView, coins);
+        block_coins1.setText("You bought: "+name+"\n"+"You paid: "+(price+3));
+        root.getChildren().remove(block_coins1);
+        root.getChildren().add(block_coins1);
+        defaultSatan.setVisible(true);
+        System.out.println(level);
+
+
+        nextButton.setOnMousePressed(e->nextDialgoue());
+
+    }
+    private void nextDialgoue2(){
+    System.out.print("bruh");
+        if (d2_counter >= lines2.size()-1) {
+            nextButton.setVisible(false);
+            textBoxView.setVisible(false);
+            text.setVisible(false);
+            defaultSatan.setVisible(false);
+            reset=true;
+            //button.setManaged(true);
+        } else {
+            d2_counter++;
+            String current = lines2.get(d2_counter);
+            text.setText(current);
         }
     }
 
