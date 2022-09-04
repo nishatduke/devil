@@ -23,6 +23,8 @@ public class HelloApplication extends Application {
     public Group root = new Group();
 
     public int level = 1;
+
+    public int chainSize = 0;
     public int d_counter = 0;
     public ArrayList<String> lines = new ArrayList<String>();
 
@@ -124,8 +126,8 @@ public class HelloApplication extends Application {
             button.setPrefSize(80, 20);
             root.getChildren().add(button);
 
-            button.setOnMouseClicked(e -> updateCoins(this.price));
-            button.setOnMouseClicked(e -> specialEvent1(button.getText()));
+//            button.setOnMouseClicked(e -> specialEvent1(button.getText()));
+            button.setOnMouseClicked(e -> updateChain(chainSize));
         }
 
     }
@@ -172,7 +174,7 @@ public class HelloApplication extends Application {
         Foods.add(juice);
         Foods.add(banana);
         Shop foodShop = new Shop("food","/Ghoulish_Groceries.png",Foods);
-        foodShop.displayShop(954,100,200,200);
+        foodShop.displayShop(975,32,200,200);
 
         Habits.add(book);
         Habits.add(vhs);
@@ -184,7 +186,7 @@ public class HelloApplication extends Application {
         Pets.add(pet2);
         Pets.add(pet3);
         Shop petShop = new Shop("pets","/Perilous Pets.png",Pets);
-        petShop.displayShop(954,319,200,200);
+        petShop.displayShop(975,250,200,200);
 
 
 
@@ -248,7 +250,7 @@ public class HelloApplication extends Application {
         // define price as item price
         purchaseButton.setOnMouseClicked(e -> updateCoins(shoes.price));
 
-        stage.setTitle("Devil's Advocate2");
+        stage.setTitle("Devil's Advocate");
         stage.setScene(scene);
 //        stage.setFullScreen(true);
         stage.show();
@@ -269,6 +271,23 @@ public class HelloApplication extends Application {
         }
     }
 
+    //blockchain functions
+    private void updateChain(int chainSize){
+        ArrayList<Image> Images = new ArrayList<Image>();
+        Image image = new Image("/1 Block.png");
+        Images.add(image);
+        image = new Image("/2 Blocks.png");
+        Images.add(image);
+        ImageView newChainView = new ImageView(Images.get(chainSize));
+        newChainView.setX(20);
+        newChainView.setY(20);
+        newChainView.setFitHeight(637);
+        newChainView.setFitWidth(178);
+
+        root.getChildren().remove(coins);
+        root.getChildren().addAll(newChainView, coins);
+        chainSize ++;
+    }
 
     private void specialEvent1(String x){
         if(x.equals("Dress 17")) {
