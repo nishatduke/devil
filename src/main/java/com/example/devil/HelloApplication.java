@@ -129,6 +129,14 @@ public class HelloApplication extends Application {
     Item dress = new Item("Dress", 17);
     Item hat = new Item("Hat", 8);
 
+    public ArrayList<Item> Food = new ArrayList<Item>();
+    Item apple = new Item("Poison Apple",3);
+    Item juice = new Item("Skull Juice",4);
+    Item banana = new Item("Rotten Banana",2);
+
+    public ArrayList<Item> Habit = new ArrayList<Item>();
+    Item book = new Item("Suspcious Book",5);
+
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -143,7 +151,7 @@ public class HelloApplication extends Application {
         Clothes.add(dress);
         Clothes.add(hat);
         Shop clothesShop = new Shop("clothes", "/Creepy_Clothing.png", Clothes);
-        clothesShop.displayShop(800, 0, 200, 200);
+        clothesShop.displayShop(743, 32, 200, 200);
 
         StackPane group = new StackPane();
 //        Scene scene = new Scene(group, 320, 240);
