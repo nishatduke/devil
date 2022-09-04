@@ -2,6 +2,8 @@ package com.example.devil;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.*;
 import javafx.stage.Stage;
 
@@ -121,7 +123,9 @@ public class HelloApplication extends Application {
             button.setTranslateY(Y);
             button.setPrefSize(80, 20);
             root.getChildren().add(button);
+
             button.setOnMouseClicked(e -> updateCoins(this.price));
+            button.setOnMouseClicked(e -> specialEvent1(button.getText()));
         }
 
     }
@@ -238,11 +242,13 @@ public class HelloApplication extends Application {
         //Creating a Group object for level 1/empty blockchain
         root.getChildren().addAll(textBoxView, text, nextButton, defaultSatan, blockChainView, coins);
         Scene scene = new Scene(root, 1200, 700);
+        Color background_red =  Color.web("0x631D23");
+        scene.setFill(background_red);
         nextButton.setOnMouseClicked(e -> nextDialgoue());
         // define price as item price
         purchaseButton.setOnMouseClicked(e -> updateCoins(shoes.price));
 
-        stage.setTitle("Hello!");
+        stage.setTitle("Devil's Advocate");
         stage.setScene(scene);
 //        stage.setFullScreen(true);
         stage.show();
@@ -260,6 +266,16 @@ public class HelloApplication extends Application {
             d_counter++;
             String current = lines.get(d_counter);
             text.setText(current);
+        }
+    }
+
+
+    private void specialEvent1(String x){
+        if(x.equals("Dress 17")) {
+            nextButton.setVisible(true);
+            textBoxView.setVisible(true);
+            text.setVisible(true);
+            text.setText("Hehe L+ratio, I'm editing your block, and yoinking 3 coins from you!");
         }
     }
 
