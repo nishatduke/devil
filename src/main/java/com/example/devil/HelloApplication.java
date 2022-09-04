@@ -33,6 +33,8 @@ public class HelloApplication extends Application {
     public int level = 1;
     public boolean reset =false;
 
+    public boolean Freeze = false;
+
     public int chainSize = 0;
     public int d_counter = 0;
     public ArrayList<String> lines = new ArrayList<String>();
@@ -105,7 +107,7 @@ public class HelloApplication extends Application {
             button.setPrefSize(Width, Height);
             button.setGraphic(imageView);
             root.getChildren().addAll(imageView, button);
-            button.setOnMouseClicked(e -> listItems(this.Items, 650, Y));
+            button.setOnMouseClicked(e -> listItems(this.Items, 530, Y));
         }
 
     }
@@ -137,10 +139,11 @@ public class HelloApplication extends Application {
         }
 
         public void displayItem(int X, int Y) {
-            Button button = new Button(this.name + " " + this.price);
+            Button button = new Button(this.name + " $" + this.price);
             button.setTranslateX(X);
             button.setTranslateY(Y);
-            button.setPrefSize(80, 20);
+            button.setPrefSize(140, 45);
+//            button.fontProperty(Font.font(30));
             root.getChildren().add(button);
 
            //button.setOnMouseClicked(e -> specialEvent1());
@@ -149,12 +152,44 @@ public class HelloApplication extends Application {
 
     }
 
+    public class Feature{
+        private String name;
+
+        public Feature(String name){
+            this.name = name;
+        }
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String newName) {
+            name = newName;
+        }
+        private void activateFeature(String featureName){
+            if(featureName.equals("Freeze")){
+                Freeze = true;
+            }
+        }
+
+        public void displayFeature(int X, int Y) {
+            Button button = new Button(this.name);
+            button.setTranslateX(X);
+            button.setTranslateY(Y);
+            button.setPrefSize(140, 45);
+//            button.fontProperty(Font.font(30));
+            root.getChildren().add(button);
+
+//            button.setOnMouseClicked(e -> specialEvent1(button.getText()));
+            button.setOnMouseClicked(e -> activateFeature(this.name));
+        }
+    }
+
 
     public ArrayList<Item> Clothes = new ArrayList<Item>();
     //    Button shoes_button = new Button();
-    Item shoes = new Item("Shoes", 5);
-    Item dress = new Item("Dress", 17);
-    Item hat = new Item("Hat", 8);
+    Item shoes = new Item("Awfully Red Shoes", 5);
+    Item dress = new Item("Demonic Dress", 17);
+    Item hat = new Item("Fool's Hat", 8);
 
     public ArrayList<Item> Foods = new ArrayList<Item>();
     Item apple = new Item("Poison Apple",3);
@@ -167,9 +202,9 @@ public class HelloApplication extends Application {
     Item dvd = new Item("Lost DVD",7);
 
     public ArrayList<Item> Pets = new ArrayList<Item>();
-    Item pet1 = new Item("pet1",25);
-    Item pet2 = new Item("pet2",10);
-    Item pet3 = new Item("pet3",27);
+    Item pet1 = new Item("Cerberus",25);
+    Item pet2 = new Item("Hydra",10);
+    Item pet3 = new Item("Hammie Boi",27);
 
 
     @Override
@@ -231,8 +266,15 @@ public class HelloApplication extends Application {
         Shop petShop = new Shop("pets","/Perilous Pets.png",Pets);
         petShop.displayShop(975,250,200,200);
 
-
-
+        //adding features
+        Image featureBox = new Image("/Placeholder Square.png");
+        ImageView featureBoxView = new ImageView(featureBox);
+        featureBoxView.setX(250);
+        featureBoxView.setY(45);
+        featureBoxView.setFitHeight(395);
+        featureBoxView.setFitWidth(200);
+        Feature freeze = new Feature("Freeze");
+//        freeze.displayFeature(250,100);
 
         StackPane group = new StackPane();
 //        Scene scene = new Scene(group, 320, 240);
@@ -287,7 +329,8 @@ public class HelloApplication extends Application {
         // -fx-border-color: #b58482"
 
         //Creating a Group object for level 1/empty blockchain
-        root.getChildren().addAll(textBoxView, text, nextButton, defaultSatan, blockChainView, coins);
+        root.getChildren().addAll(textBoxView, text, nextButton, defaultSatan, blockChainView, coins, featureBoxView);
+        freeze.displayFeature(280,100);
         Scene scene = new Scene(root, 1200, 700);
         Color background_red =  Color.web("0x631D23");
         scene.setFill(background_red);
@@ -375,7 +418,7 @@ public class HelloApplication extends Application {
             root.getChildren().addAll(block_coins1,block_coins2);
         }
 
-        if(itemprice==17 &&name.equals("Dress")&&level==1){
+        if(itemprice==17 &&name.equals("Demonic Dress")&&level==1){
             specialEvent1(itemprice,name);
         }
 
@@ -445,10 +488,12 @@ public class HelloApplication extends Application {
     private void listItems(ArrayList<Item> Items, int X, int Y) {
         for (int i = 0; i < Items.size(); i++) {
             // Print all elements of List
-            Items.get(i).displayItem(X, Y);
             if (i > 0) {
-                Items.get(i).displayItem(X, Y + 30);
-                Y = Y +  30;
+                Items.get(i).displayItem(X, Y + 80);
+                Y = Y +  80;
+            }
+            else{
+                Items.get(i).displayItem(X, Y);
             }
         }
     }
