@@ -81,7 +81,7 @@ public class HelloApplication extends Application {
             button.setPrefSize(Width, Height);
             button.setGraphic(imageView);
             root.getChildren().addAll(imageView, button);
-            button.setOnMouseClicked(e -> listItems(this.Items, X, Y));
+            button.setOnMouseClicked(e -> listItems(this.Items, 650, Y));
         }
 
     }
@@ -116,7 +116,8 @@ public class HelloApplication extends Application {
             Button button = new Button(this.name + " " + this.price);
             button.setTranslateX(X);
             button.setTranslateY(Y);
-            button.setPrefSize(30, 10);
+            button.setPrefSize(80, 20);
+            root.getChildren().add(button);
             button.setOnMouseClicked(e -> updateCoins(this.price));
         }
 
@@ -135,7 +136,7 @@ public class HelloApplication extends Application {
     Item banana = new Item("Rotten Banana",2);
 
     public ArrayList<Item> Habit = new ArrayList<Item>();
-    Item book = new Item("Suspcious Book",5);
+    Item book = new Item("Suspicious Book",5);
 
 
     @Override
@@ -240,7 +241,7 @@ public class HelloApplication extends Application {
             // Print all elements of List
             Items.get(i).displayItem(X, Y);
             if (i > 0) {
-                Items.get(i).displayItem(X + 10, Y + 10);
+                Items.get(i).displayItem(X, Y + 30);
             }
         }
     }
